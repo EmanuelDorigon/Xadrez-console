@@ -1,7 +1,10 @@
 ﻿using System;
 using board;
-using Xadrez_console.board;
 using xadrez;
+using Xadrez_console.board;
+using Xadrez_console.xadrez;
+using Xadrez_console;
+
 
 namespace Xadrez_console
 {
@@ -9,21 +12,15 @@ namespace Xadrez_console
     {
         static void Main(string[] args)
         {
-            try
-            {
-                Board boar = new Board(8, 8);
+            Board bor = new Board(8, 8);
 
-                boar.putPiece(new Tower(boar, Color.Black), new Position(0, 0));
-                boar.putPiece(new Tower(boar, Color.Black), new Position(1, 9));
-                boar.putPiece(new King(boar, Color.Black), new Position(0, 2));
+            bor.putPiece(new Tower(bor, Color.Black), new Position(0, 0));
+            bor.putPiece(new Tower(bor, Color.Black), new Position(1, 3));
+            bor.putPiece(new Tower(bor, Color.Black), new Position(0, 2));
+            bor.putPiece(new Tower(bor, Color.White), new Position(3, 5));
 
-                Screen.printBoard(boar);
 
-            }
-            catch (BoardException e)
-            {
-                Console.WriteLine(e.Message);
-            }            
+            Screen.printBoard(bor);
         }
     }
 }
