@@ -9,16 +9,21 @@ namespace Xadrez_console
     {
         static void Main(string[] args)
         {
-            Board boar = new Board(8, 8);
+            try
+            {
+                Board boar = new Board(8, 8);
 
-            boar.putPiece(new Tower(boar, Color.Black), new Position(0, 0));
-            boar.putPiece(new Tower(boar, Color.Black), new Position(1, 3));
-            boar.putPiece(new King(boar, Color.Black) , new Position(2, 4));
+                boar.putPiece(new Tower(boar, Color.Black), new Position(0, 0));
+                boar.putPiece(new Tower(boar, Color.Black), new Position(1, 9));
+                boar.putPiece(new King(boar, Color.Black), new Position(0, 2));
 
-            Screen.printBoard(boar);
+                Screen.printBoard(boar);
 
-
-
+            }
+            catch (BoardException e)
+            {
+                Console.WriteLine(e.Message);
+            }            
         }
     }
 }

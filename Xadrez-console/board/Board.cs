@@ -19,10 +19,53 @@ namespace board
             return Pieces[line, column];
         }
 
+        // Criar uma sobre carga do metodo peça
+        public Piece piece(Position pos)
+        {
+            validatePosition(pos);
+            return Pieces[pos.Line, pos.Column];
+        }
+
         public void putPiece(Piece p, Position pos)
         {
+            if(existPiece(pos) == true)
+            {
+                throw new BoardException("This position contains a piece");
+            }
             Pieces[pos.Line, pos.Column] = p;
             p.Position = pos;
         }
+        public bool existPiece(Position pos)
+        {
+            validPosition(pos);
+            return piece(pos) != null;
+        }
+
+        // Position is valid
+        public bool positionValid(Position pos)  
+        {
+            if (pos.Line < 0 || pos.Line >= Lines || pos.Column < 0 || pos.Column >= Lines)
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool validPosition(Position pos)
+        {
+            if (pos.Line < 0 || pos.Line >= Lines || pos.Column < 0 || pos.Column >= Lines)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void validatePosition(Position pos)
+        {
+            if (!validPosition(pos))
+            {
+                throw new BoardException("Position does not exist");
+            }
+        }
+
     }
 }
